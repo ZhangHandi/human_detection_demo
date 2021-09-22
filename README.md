@@ -151,19 +151,24 @@ python -m paddle.distributed.launch --log_dir=./fairmot_dla34_30e_1088x608/ --gp
 
 实验结果
 
-| 模型                                             | MOTA | 推理速度 |
-| ------------------------------------------------ | ---- | -------- |
-| baseline (dla34 2gpu bs6 adam)                   | 70.9 |          |
-| baseline (dla34 4gpu bs8 momentum)               | 67.5 |          |
-| baseline (dla34 4gpu bs8 momentum + no_pretrain) |      |          |
-| dla34 4gpu bs8 momentum + dcn                    | 67.2 |          |
-| dla34 4gpu bs8 momentum + syncbn + ema           | 67.4 |          |
-| dla34 4gpu bs8 momentum + cutmix                 | 67.7 |          |
-| dla34 4gpu bs8 momentum + attention              | 67.6 |          |
-|                                                  |      |          |
-| dla46c 4gpu bs8 momentum + no_pretrain           | 61.2 |          |
-| dla60 4gpu bs8 momentum + no_pretrain            | 58.8 |          |
-| Dla102 4gpu bs8 momentum + no_pretrain           | 54.8 |          |
+| 模型                                                         | MOTA | 推理速度 |
+| ------------------------------------------------------------ | ---- | -------- |
+| baseline (dla34 2gpu bs6 adam lr=0.0001)                     | 70.9 |          |
+| baseline (dla34 4gpu bs8 momentum)                           | 67.5 |          |
+| baseline (dla34 4gpu bs8 momentum + no_pretrain)             | 64.3 |          |
+| dla34 4gpu bs8 momentum + dcn                                | 67.2 |          |
+| dla34 4gpu bs8 momentum + syncbn + ema                       | 67.4 |          |
+| dla34 4gpu bs8 momentum + cutmix                             | 67.7 |          |
+| dla34 4gpu bs8 momentum + attention                          | 67.6 |          |
+| dla34 4gpu bs6 adam lr=0.0002                                | 71.1 |          |
+| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + attention     | 71.6 |          |
+| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + sann          | 71.1 |          |
+| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + attention + cutmix | 71.3 |          |
+| dla46c 4gpu bs8 momentum + no_pretrain                       | 61.2 |          |
+| dla60 4gpu bs8 momentum + no_pretrain                        | 58.8 |          |
+| dla102 4gpu bs8 momentum + no_pretrain                       | 54.8 |          |
+
+
 
 
 
