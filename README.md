@@ -149,17 +149,15 @@ python -m paddle.distributed.launch --log_dir=./fairmot_dla34_30e_1088x608/ --gp
 
 2）训练基于NVIDIA Tesla V100 32G 4GPU，batch size = 8，使用Momentum优化器，模型使用CrowdHuman数据集进行预训练；
 
-3）训练基于NVIDIA Tesla V100 32G 4GPU，batch size = 8，使用M
+3）训练基于NVIDIA Tesla V100 32G 4GPU，batch size = 8，使用Momentum优化器，模型使用ImageNet数据集进行预训练。
 
-并使用基于CrowdHuman数据集进行预训练。
+模型优化时使用的数据集，参见 `调优数据集`。
 
-本案例采用FairMOT模型作为基线模型，其骨干网络选择是DLA34，。模型
-
-本案例采用FairMOT模型作为基线模型，其骨干网络选择是DLA34，并使用基于CrowdHuman数据集进行预训练。模型优化时使用的数据集，参见：`调优数据集`。（基线模型训练基于NVIDIA Tesla V100 32GB 2GPU）
-
-| 模型             | MOTA | 推理速度 |
-| ---------------- | ---- | -------- |
-| Baseline (DLA34) | 70.9 |          |
+| 模型                                             | MOTA | 推理速度 |
+| ------------------------------------------------ | ---- | -------- |
+| baseline (dla34 2gpu bs6 adam lr=0.0001)         | 70.9 |          |
+| baseline (dla34 4gpu bs8 momentum)               | 67.5 |          |
+| baseline (dla34 4gpu bs8 momentum + no_pretrain) | 64.3 |          |
 
 
 
