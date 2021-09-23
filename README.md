@@ -2,13 +2,13 @@
 
 ## 1. 项目说明
 
-本案例面向人流量统计/人体检测等场景，提供基于PaddleDetection的解决方案，希望通过梳理优化模型和性能的思路帮助用户更高效的解决实际问题。
+本案例面向人流量统计/人体检测等场景，提供基于PaddleDetection的解决方案，希望通过梳理优化模型精度和性能的思路帮助用户更高效的解决实际问题。
 
 应用场景：静态场景下的人员计数和动态场景下的人流量统计
 
 ![demo](./demo.png)
 
-
+# 业务难点需要后面在模型选择的时候提一下
 
 业务难点：
 
@@ -22,7 +22,7 @@
 
 ### 训练数据集
 
-请参照 [数据准备文档](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.2/docs/tutorials/PrepareMOTDataSet_cn.md) 去下载并准备好所有的数据集，包括 Caltech Pedestrian, CityPersons, CHUK-SYSU, PRW, ETHZ, MOT17和MOT16。训练时，我们采用前六个数据集，共 53694 张已标注好的数据集用于训练。MOT16作为评测数据集。所有的行人都有检测框标签，部分有ID标签。如果您想使用这些数据集，请遵循他们的License。
+请参照 [数据准备文档](https://github.com/PaddlePaddle/PaddleDetection/blob/release/2.2/docs/tutorials/PrepareMOTDataSet_cn.md) 去下载并准备好所有的数据集，包括 Caltech Pedestrian, CityPersons, CHUK-SYSU, PRW, ETHZ, MOT17和MOT16。训练时，我们采用前六个数据集，共 53694 张已标注好的数据集用于训练。MOT16作为评测数据集。所有的行人都有检测框标签，部分有ID标签。如果您想使用这些数据集，请遵循他们的License。对数据集的详细介绍参见：[数据集介绍](dataset.md)
 
 ### 数据格式
 
@@ -151,22 +151,22 @@ python -m paddle.distributed.launch --log_dir=./fairmot_dla34_30e_1088x608/ --gp
 
 实验结果
 
-| 模型                                                         | MOTA | 推理速度 |
-| ------------------------------------------------------------ | ---- | -------- |
-| baseline (dla34 2gpu bs6 adam lr=0.0001)                     | 70.9 |          |
-| baseline (dla34 4gpu bs8 momentum)                           | 67.5 |          |
-| baseline (dla34 4gpu bs8 momentum + no_pretrain)             | 64.3 |          |
-| dla34 4gpu bs8 momentum + dcn                                | 67.2 |          |
-| dla34 4gpu bs8 momentum + syncbn + ema                       | 67.4 |          |
-| dla34 4gpu bs8 momentum + cutmix                             | 67.7 |          |
-| dla34 4gpu bs8 momentum + attention                          | 67.6 |          |
-| dla34 4gpu bs6 adam lr=0.0002                                | 71.1 |          |
-| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + attention     | 71.6 |          |
-| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + sann          | 71.1 |          |
-| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + attention + cutmix | 71.3 |          |
-| dla46c 4gpu bs8 momentum + no_pretrain                       | 61.2 |          |
-| dla60 4gpu bs8 momentum + no_pretrain                        | 58.8 |          |
-| dla102 4gpu bs8 momentum + no_pretrain                       | 54.8 |          |
+| 模型                                                         | MOTA | 推理速度（开启TensorRT） |
+| ------------------------------------------------------------ | ---- | ------------------------ |
+| baseline (dla34 2gpu bs6 adam lr=0.0001)                     | 70.9 |                          |
+| baseline (dla34 4gpu bs8 momentum)                           | 67.5 |                          |
+| baseline (dla34 4gpu bs8 momentum + no_pretrain)             | 64.3 |                          |
+| dla34 4gpu bs8 momentum + dcn                                | 67.2 |                          |
+| dla34 4gpu bs8 momentum + syncbn + ema                       | 67.4 |                          |
+| dla34 4gpu bs8 momentum + cutmix                             | 67.7 |                          |
+| dla34 4gpu bs8 momentum + attention                          | 67.6 |                          |
+| dla34 4gpu bs6 adam lr=0.0002                                | 71.1 |                          |
+| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + attention     | 71.6 |                          |
+| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + sann          | 71.1 |                          |
+| dla34 4gpu bs6 adam lr=0.0002 + syncbn + ema + attention + cutmix | 71.3 |                          |
+| dla46c 4gpu bs8 momentum + no_pretrain                       | 61.2 |                          |
+| dla60 4gpu bs8 momentum + no_pretrain                        | 58.8 |                          |
+| dla102 4gpu bs8 momentum + no_pretrain                       | 54.8 |                          |
 
 
 
