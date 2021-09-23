@@ -114,7 +114,15 @@ PaddleDetection对于多目标追踪算法主要提供了三种模型，DeepSORT
 
 这里我们选择了FairMOT算法进行人流量统计/人体检测。
 
+
+
 ## 4. 模型训练
+
+下载PaddleDetection
+
+```bash
+git clone https://github.com/PaddlePaddle/PaddleDetection.git
+```
 
 运行如下代码开始训练模型：
 
@@ -134,6 +142,18 @@ python -m paddle.distributed.launch --log_dir=./fairmot_dla34_30e_1088x608/ --gp
 本小节侧重展示在模型优化过程中，提升模型精度的思路。在这些思路中，有些会对精度有所提升，有些没有。在其他人流量统计/人体检测场景中，可以根据实际情况尝试如下策略，不同的场景下可能会有不同的效果。
 
 #### (1) 基线模型选择
+
+本案例采用FairMOT模型作为基线模型，其骨干网络选择是DLA34。基线模型共有三种：
+
+1）训练基于NVIDIA Tesla V100 32G 2GPU，batch size = 6，使用Adam优化器，模型使用CrowdHuman数据集进行预训练；
+
+2）训练基于NVIDIA Tesla V100 32G 4GPU，batch size = 8，使用Momentum优化器，模型使用CrowdHuman数据集进行预训练；
+
+3）训练基于NVIDIA Tesla V100 32G 4GPU，batch size = 8，使用M
+
+并使用基于CrowdHuman数据集进行预训练。
+
+本案例采用FairMOT模型作为基线模型，其骨干网络选择是DLA34，。模型
 
 本案例采用FairMOT模型作为基线模型，其骨干网络选择是DLA34，并使用基于CrowdHuman数据集进行预训练。模型优化时使用的数据集，参见：`调优数据集`。（基线模型训练基于NVIDIA Tesla V100 32GB 2GPU）
 
